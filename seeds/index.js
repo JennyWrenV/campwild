@@ -31,20 +31,24 @@ const seedDB = async () => {
             author: '63ea1fcec641a66f30aaa7b0',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
+            geometry: {
+                type: "Point",
+                coordinates: [-113.1331, 47.0202]
+            },
             images: [
                 {
-                    url: 'https://res.cloudinary.com/dro4tmr3i/image/upload/v1676559287/YelpCamp/zrexn8p3w4afmuqjwlwp.jpg',    
+                    url: 'https://res.cloudinary.com/dro4tmr3i/image/upload/v1676559287/YelpCamp/zrexn8p3w4afmuqjwlwp.jpg',
                     filename: 'YelpCamp/zrexn8p3w4afmuqjwlwp'
-                   
-                  },
-                  {
-                    url: 'https://res.cloudinary.com/dro4tmr3i/image/upload/v1676559288/YelpCamp/eaippfro5b5zq18pnpwp.jpg',    
+
+                },
+                {
+                    url: 'https://res.cloudinary.com/dro4tmr3i/image/upload/v1676559288/YelpCamp/eaippfro5b5zq18pnpwp.jpg',
                     filename: 'YelpCamp/eaippfro5b5zq18pnpwp'
-                  },
-                  {
-                    url: 'https://res.cloudinary.com/dro4tmr3i/image/upload/v1676559289/YelpCamp/mwhlnervgyc0snpbz8cb.jpg',    
+                },
+                {
+                    url: 'https://res.cloudinary.com/dro4tmr3i/image/upload/v1676559289/YelpCamp/mwhlnervgyc0snpbz8cb.jpg',
                     filename: 'YelpCamp/mwhlnervgyc0snpbz8cb'
-                  }
+                }
             ],
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             price
