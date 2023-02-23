@@ -12,8 +12,18 @@ module.exports.descriptors = [
     'Grizzly',
     'Elk',
     'Antelope',
-    'Bison'
-    
+    'Bison',
+    'Wild',
+    'Low',
+    'High',
+    'Sheep',
+    'Moose',
+    'Gold',
+    'Mining',
+    'Hidden',
+    'Red',
+    'Ruined'
+
 ]
 
 module.exports.places = [
@@ -32,5 +42,14 @@ module.exports.places = [
     'Point',
     'Lake',
     'Pond',
-    'Trail'
+    'Trail',
+    'Hideaway',
+    'Cabin',
+    'Falls',
+    'Rock',
+    'Meadow',
+    'Flats',
+    'Scrub',
+    'Brush'
+
 ]
