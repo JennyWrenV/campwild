@@ -24,20 +24,23 @@ module.exports.register = async (req, res, next) => {
 }
 
 module.exports.renderLogin = (req, res) => {
+    if (req.query.returnTo) {
+        req.session.returnTo = req.query.returnTo;
+    }
     res.render('users/login');
 }
 
 module.exports.login = (req, res) => {
     req.flash('success', 'Welcome back!');
     const redirectURL = res.locals.returnTo || '/campgrounds'
-    delete res.locals.returnTo
+
     res.redirect(redirectURL)
 }
 
 module.exports.logout = (req, res, next) => {
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      req.flash('success', "Goodbye!");
-      res.redirect('/campgrounds');
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        req.flash('success', "Goodbye!");
+        res.redirect('/campgrounds');
     });
-  }
+}
