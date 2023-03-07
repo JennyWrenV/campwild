@@ -2,33 +2,34 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config()
 }
 
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
-const ejsMate = require('ejs-mate')
-const ExpressError = require('./utils/ExpressError')
-const methodOverride = require('method-override')
-const session = require('express-session')
-const flash = require('connect-flash')
-const passport = require('passport')
-const localStrategy = require('passport-local')
-const User = require('./models/user')
+const ejsMate = require('ejs-mate');
+const session = require('express-session');
+const flash = require('connect-flash');
+const ExpressError = require('./utils/ExpressError');
+const methodOverride = require('method-override');
+const passport = require('passport');
+const localStrategy = require('passport-local');
+const User = require('./models/user');
+const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-const userRoutes = require('./routes/users')
-const campgroundRoutes = require('./routes/campgrounds')
-const reviewRoutes = require('./routes/reviews')
-const helmet = require('helmet')
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+const userRoutes = require('./routes/users');
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
 
 
 const MongoStore = require('connect-mongo');
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+
 
 mongoose.set('strictQuery', false);
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-
 
 })
     .then(() => {
@@ -60,7 +61,8 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
-const secret = process.env.SECRET || 'squirrel'
+const secret = process.env.SECRET || 'squirrel';
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
@@ -89,6 +91,7 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
+
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -155,14 +158,6 @@ app.use((req, res, next) => {
     next()
 });
 
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({
-        email: 'test@gmail.com',
-        username: 'fakeuser'
-    })
-    const newUser = await User.register(user, 'test');
-    res.send(newUser);
-});
 
 app.use('/', userRoutes)
 app.use('/campgrounds', campgroundRoutes);
@@ -171,7 +166,6 @@ app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.get('/', (req, res) => {
     res.render('home')
 })
-
 
 
 app.all('*', (req, res, next) => {
